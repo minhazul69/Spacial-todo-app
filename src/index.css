@@ -16,6 +16,7 @@ code {
     monospace;
 }
 .active {
-  color: rgb(224, 224, 30);
+  color: indigo;
+  font-weight: bold;
   background: none;
 }

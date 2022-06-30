@@ -35,7 +35,7 @@ const ToDo = () => {
               </form>
             </div>
           </div>
-          <div className=" grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 gap-4 lg:px-12 my-8">
+          <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 gap-4 lg:px-12 my-8">
             {tasks.map((task, index) => (
               <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
@@ -46,7 +46,7 @@ const ToDo = () => {
                       class="radio radio-primary"
                     />
                   </div>
-                  <h2 class="card-title">My Task {index + 1}</h2>
+                  <h2 class="card-title text-green-800">My Task {index + 1}</h2>
                   {/* <h2
                     style={{
                       textDecoration: strikethrough && "line-through",
