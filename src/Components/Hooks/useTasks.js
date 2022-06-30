@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useTasks = () => {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    fetch("task.json")
+    fetch("http://localhost:5000/all-tasks")
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [tasks]);

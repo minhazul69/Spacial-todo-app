@@ -5,6 +5,7 @@ import Clander from "./Components/Clander/Clander";
 import Header from "./Components/Share/Header/Header";
 import Footer from "./Components/Share/Footer/Footer";
 import ToDo from "./Components/To-Do/ToDo";
+import EditTodo from "./Components/To-Do/EditTodo";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ToDo />} />
           <Route path="/complete-task" element={<CompletedTasks />} />
+          <Route path="/edit-todo/:id" element={<EditTodo />} />
           <Route path="/calendar" element={<Clander />} />
           <Route path="*" element={<Clander />} />
         </Routes>

@@ -11,7 +11,7 @@ const CompletedTasks = () => {
           <div className="card w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <h2 class="card-title text-red-800">Compleat Task {index + 1}</h2>
-              <p>{task.task}</p>
+              <p>{task.text}</p>
             </div>
           </div>
         ))}

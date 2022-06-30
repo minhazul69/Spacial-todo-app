@@ -1,14 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import useTasks from "../Hooks/useTasks";
-import "./ToDo.css";
+import { useNavigate } from "react-router-dom";
 
 const ToDo = () => {
   const textRef = useRef("");
   const [tasks] = useTasks();
+  const navigate = useNavigate();
   const handleTaskAdd = (e) => {
     e.preventDefault();
     const text = textRef.current.value;
-    console.log(text);
+    fetch("http://localhost:5000/task", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // toast.success("Product Added SuccessFull");
+      });
+    e.target.reset();
+  };
+  const handleEditTodo = (id) => {
+    navigate(`/edit-todo/${id}`);
   };
 
   return (
@@ -25,6 +41,7 @@ const ToDo = () => {
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered input-primary w-full max-w-xs"
+                    required
                   />
                 </div>
                 <div class="form-control mt-6">
@@ -46,27 +63,14 @@ const ToDo = () => {
                       class="radio radio-primary"
                     />
                   </div>
-                  <h2 class="card-title text-green-800">My Task {index + 1}</h2>
-                  {/* <h2
-                    style={{
-                      textDecoration: strikethrough && "line-through",
-                      color: strikethrough ? "red" : "black",
-                    }}
-                    className="card-title"
-                  >
-                    {name}
-                  </h2> */}
-                  <p
-                  // style={{
-                  //   textDecoration: strikethrough && "line-through",
-                  //   color: strikethrough ? "red" : "black",
-                  // }}
-                  >
-                    {task.task}
-                  </p>
+                  <h2 class="card-title text-green-800 font-bold">
+                    My Task {index + 1}
+                  </h2>
+
+                  <p>{task.text}</p>
                   <div className="card-actions justify-between mt-5">
                     <button
-                      //   onClick={() => handleDeleteService(task._id)}
+                      onClick={() => handleEditTodo(task._id)}
                       className="btn btn-primary"
                     >
                       Edit
