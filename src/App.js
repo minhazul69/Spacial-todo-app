@@ -6,7 +6,7 @@ import Header from "./Components/Share/Header/Header";
 import Footer from "./Components/Share/Footer/Footer";
 import ToDo from "./Components/To-Do/ToDo";
 import EditTodo from "./Components/To-Do/EditTodo";
-
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
@@ -20,6 +20,7 @@ function App() {
           <Route path="*" element={<Clander />} />
         </Routes>
         <Footer />
+        <Toaster />
       </div>
     </>
   );

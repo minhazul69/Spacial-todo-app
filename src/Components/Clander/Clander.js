@@ -11,9 +11,9 @@ const Clander = () => {
       }`;
   return (
     <div>
-      <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-          <img src={calenderImg} class="max-w-sm rounded-lg shadow-2xl" />
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <img src={calenderImg} className="max-w-sm rounded-lg shadow-2xl" />
           <div className="lg:px-24">
             <style>{css}</style>
             <DayPicker

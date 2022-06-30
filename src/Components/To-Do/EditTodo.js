@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useParams } from "react-router-dom";
 import useTaskDetails from "../Hooks/useTaskDetails";
+import toast from "react-hot-toast";
 const EditTodo = () => {
   const editTextRef = useRef("");
   const { id } = useParams();
@@ -21,26 +22,28 @@ const EditTodo = () => {
       .then((data) => {
         if (data) {
           console.log(data);
-          //   toast.success("Delivered Product SuccessFull");
+
+          e.target.reset();
+          toast.success("Your Task Edit SuccessFull");
         }
       });
     console.log(text);
   };
   return (
     <div className="container mx-auto">
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 m-auto my-8">
-        <div class="card-body">
+      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 m-auto my-8">
+        <div className="card-body">
           <form onSubmit={handleEditText}>
-            <div class="form-control">
+            <div className="form-control">
               <h3 className="text-center mb-4 font-bold">Edit Your Text</h3>
               <textarea
                 ref={editTextRef}
                 placeholder={taskDetails[0]?.text}
-                class="textarea textarea-primary"
+                className="textarea textarea-primary"
               ></textarea>
             </div>
-            <div class="form-control mt-6">
-              <button type="submit" class="btn btn-primary">
+            <div className="form-control mt-6">
+              <button type="submit" className="btn btn-primary">
                 Edit Text
               </button>
             </div>
