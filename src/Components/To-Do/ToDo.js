@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const ToDo = () => {
   const textRef = useRef("");
+  const compleatTaskRef = useRef("");
   const [tasks] = useTasks();
   const navigate = useNavigate();
   const handleTaskAdd = (e) => {
@@ -26,6 +27,20 @@ const ToDo = () => {
   const handleEditTodo = (id) => {
     navigate(`/edit-todo/${id}`);
   };
+  const handleCheck = (id) => {
+    console.log(id);
+    const check = compleatTaskRef.current.checked;
+    if (check) {
+      fetch(`http://localhost:5000/compleat/${id}`, {
+        method: "PUT",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }
+    console.log("hello");
+  };
 
   return (
     <div>
@@ -35,7 +50,7 @@ const ToDo = () => {
             <div class="card-body">
               <form onSubmit={handleTaskAdd}>
                 <div class="form-control">
-                  <h3 className="text-center mb-4 font-bold">Add Your Taxt</h3>
+                  <h3 className="text-center mb-4 font-bold">Add Your Text</h3>
                   <input
                     ref={textRef}
                     type="text"
@@ -58,6 +73,8 @@ const ToDo = () => {
                 <div className="card-body">
                   <div className="">
                     <input
+                      onClick={() => handleCheck(task._id)}
+                      ref={compleatTaskRef}
                       type="radio"
                       name="radio-1"
                       class="radio radio-primary"

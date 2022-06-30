@@ -32,7 +32,7 @@ const EditTodo = () => {
         <div class="card-body">
           <form onSubmit={handleEditText}>
             <div class="form-control">
-              <h3 className="text-center mb-4 font-bold">Add Your Taxt</h3>
+              <h3 className="text-center mb-4 font-bold">Edit Your Text</h3>
               <textarea
                 ref={editTextRef}
                 placeholder={taskDetails[0]?.text}
