@@ -1,17 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import useTasks from "../Hooks/useTasks";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Spinner from "../Share/Spinner/Spinner";
 
 const ToDo = () => {
   const textRef = useRef("");
   const compleatTaskRef = useRef("");
   const [tasks] = useTasks();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleTaskAdd = (e) => {
     e.preventDefault();
     const text = textRef.current.value;
-    fetch("http://localhost:5000/task", {
+    setLoading(true);
+    fetch("https://boiling-falls-23414.herokuapp.com/task", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +24,13 @@ const ToDo = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Your Task Added SuccessFull");
+        if (data) {
+          setLoading(false);
+          toast.success("Your Task Added SuccessFull");
+        } else {
+          setLoading(false);
+          toast.error("Your Task Added Fail Please Try Again");
+        }
       });
     e.target.reset();
   };
@@ -28,20 +38,24 @@ const ToDo = () => {
     navigate(`/edit-todo/${id}`);
   };
   const handleCheck = (id) => {
+    setLoading(true);
     console.log(id);
     const check = compleatTaskRef.current.checked;
     if (check) {
-      fetch(`http://localhost:5000/compleat/${id}`, {
+      fetch(`https://boiling-falls-23414.herokuapp.com/compleat/${id}`, {
         method: "PUT",
       })
         .then((res) => res.json())
         .then((data) => {
           toast.success("Your Task Compleat SuccessFull");
+          setLoading(false);
           console.log(data);
         });
     }
   };
-
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div>
       <div className="container mx-auto todo-container">

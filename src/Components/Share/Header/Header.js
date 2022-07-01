@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
   const navItem = (
@@ -42,9 +42,9 @@ const Header = () => {
             {navItem}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl sm:ms-auto">
+        <Link to="/" className="btn btn-ghost normal-case text-xl sm:ms-auto">
           ToDo Apps
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{navItem}</ul>

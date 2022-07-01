@@ -7,6 +7,7 @@ import Footer from "./Components/Share/Footer/Footer";
 import ToDo from "./Components/To-Do/ToDo";
 import EditTodo from "./Components/To-Do/EditTodo";
 import { Toaster } from "react-hot-toast";
+import NotFound from "./Components/NotFound/NotFound";
 function App() {
   return (
     <>
@@ -17,7 +18,7 @@ function App() {
           <Route path="/complete-task" element={<CompletedTasks />} />
           <Route path="/edit-todo/:id" element={<EditTodo />} />
           <Route path="/calendar" element={<Clander />} />
-          <Route path="*" element={<Clander />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <Toaster />

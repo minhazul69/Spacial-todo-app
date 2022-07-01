@@ -10,7 +10,7 @@ const EditTodo = () => {
     e.preventDefault();
     const text = editTextRef.current.value;
     // const updateUser = { quantity: newQuantity };
-    const url = `http://localhost:5000/edit-text/${id}`;
+    const url = `https://boiling-falls-23414.herokuapp.com/edit-text/${id}`;
     fetch(url, {
       method: "PUT", // or 'PUT'
       headers: {
