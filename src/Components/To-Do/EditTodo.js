@@ -1,14 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import useTaskDetails from "../Hooks/useTaskDetails";
 import toast from "react-hot-toast";
+import Spinner from "../Share/Spinner/Spinner";
 const EditTodo = () => {
   const editTextRef = useRef("");
   const { id } = useParams();
   const [taskDetails] = useTaskDetails(id);
+  const text = taskDetails[0]?.text;
   const handleEditText = (e) => {
     e.preventDefault();
     const text = editTextRef.current.value;
+    console.log(text);
     // const updateUser = { quantity: newQuantity };
     const url = `https://boiling-falls-23414.herokuapp.com/edit-text/${id}`;
     fetch(url, {
@@ -29,6 +32,9 @@ const EditTodo = () => {
       });
     console.log(text);
   };
+  if (!text) {
+    return <Spinner />;
+  }
   return (
     <div className="container mx-auto">
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 m-auto my-8">
@@ -38,7 +44,7 @@ const EditTodo = () => {
               <h3 className="text-center mb-4 font-bold">Edit Your Text</h3>
               <textarea
                 ref={editTextRef}
-                placeholder={taskDetails[0]?.text}
+                defaultValue={text}
                 className="textarea textarea-primary"
               ></textarea>
             </div>
