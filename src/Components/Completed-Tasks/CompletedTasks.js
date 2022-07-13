@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const CompletedTasks = () => {
   const [compleatTasks, setCompleatTasks] = useState([]);
@@ -7,6 +8,13 @@ const CompletedTasks = () => {
       .then((res) => res.json())
       .then((data) => setCompleatTasks(data));
   }, [compleatTasks]);
+  const handleTaskDelete = () => {
+    const confirmAlert = window.confirm();
+    if (confirmAlert) {
+      console.log("hello");
+      toast.success("Delete Button Not Working Thanks For Try It");
+    }
+  };
   return (
     <div className="container mx-auto">
       {compleatTasks.length === 0 ? (
@@ -23,6 +31,13 @@ const CompletedTasks = () => {
                 </h2>
                 <p>{task.text}</p>
               </div>
+              {/* <button className="btn btn-danger">Delete</button> */}
+              <button
+                onClick={handleTaskDelete}
+                class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>
