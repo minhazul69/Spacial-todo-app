@@ -8,11 +8,19 @@ const CompletedTasks = () => {
       .then((res) => res.json())
       .then((data) => setCompleatTasks(data));
   }, [compleatTasks]);
-  const handleTaskDelete = () => {
+  const handleTaskDelete = (id) => {
     const confirmAlert = window.confirm();
     if (confirmAlert) {
-      console.log("hello");
-      toast.success("Delete Button Not Working Thanks For Try It");
+      fetch(`https://boiling-falls-23414.herokuapp.com/delete/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data) {
+            toast.success("Delete Task SuccessFUll");
+          }
+        });
     }
   };
   return (
@@ -33,7 +41,7 @@ const CompletedTasks = () => {
               </div>
               {/* <button className="btn btn-danger">Delete</button> */}
               <button
-                onClick={handleTaskDelete}
+                onClick={() => handleTaskDelete(task._id)}
                 className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
               >
                 Delete
